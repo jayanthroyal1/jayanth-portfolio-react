@@ -50,7 +50,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="h-screen flex flex-col justify-center items-center bg-gray-900 text-white p-6"
+      className="min-h-screen md:h-screen pt-24 md:pt-0 flex flex-col justify-center items-center bg-gray-900 text-white p-6"
     >
       <h2 className="text-4xl font-bold mb-8">Contact Me</h2>
 

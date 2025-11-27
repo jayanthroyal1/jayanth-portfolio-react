@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="h-screen relative flex flex-col justify-center items-center text-center bg-gray-900 text-white overflow-hidden"
+      className="min-h-screen md:h-screen relative flex flex-col pt-24 md:pt-0 justify-center items-center text-center bg-gray-900 text-white overflow-hidden"
     >
       {/* Background circles */}
       <div className="absolute w-72 h-72 bg-blue-500 rounded-full opacity-20 animate-pulse-slow -top-20 -left-20"></div>

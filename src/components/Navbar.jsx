@@ -36,7 +36,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed w-full bg-gray-900 bg-opacity-80 backdrop-blur-sm z-50">
+    <nav className="fixed top-0 w-full bg-gray-900 bg-opacity-80 backdrop-blur-sm z-50">
       <div className="max-w-6xl mx-auto flex justify-between items-center py-3 px-6">
         <div className="flex items-center space-x-3">
           <a href="#hero" className="group">

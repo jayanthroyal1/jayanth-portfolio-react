@@ -34,7 +34,7 @@ export default function Experience() {
   ];
 
   return (
-    <section id="experience" className="py-20 px-8 max-w-5xl mx-auto">
+    <section id="experience" className="min-h-screen md:h-screen pt-24 md:pt-0 py-20 px-8 max-w-5xl mx-auto">
       <h2 className="text-3xl font-bold mb-10 text-center">Experience</h2>
       {jobs.map((job, idx) => (
         <div key={idx} className="mb-10 bg-gray-200 p-6 rounded-lg">

@@ -44,7 +44,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="h-screen flex flex-col justify-center items-center bg-gray-800 text-white p-6"
+      className="min-h-screen md:h-screen flex flex-col pt-24 md:pt-0 justify-center items-center bg-gray-800 text-white p-6"
     >
       <h2 className="text-4xl font-bold mb-8">Projects / Portfolio</h2>
 

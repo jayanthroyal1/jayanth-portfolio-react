@@ -7,9 +7,11 @@ import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Resume from "./components/Resume";
-// import Rating from "./components/Rating"; // Hidden for now
+import Intro from "./components/Intro";
+import { AnimatePresence, motion } from "framer-motion";
 
 function App() {
+  const [showIntro, setShowIntro] = useState(true);
   const [visitorInfo, setVisitorInfo] = useState({
     ip: "Fetching...",
     location: "Fetching...",
@@ -57,17 +59,29 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      <Projects />
-      <Resume visitorInfo={visitorInfo} />
-      {/* <Rating /> */}
-      <Contact />
-    </div>
+    <>
+      <AnimatePresence>
+        {showIntro && <Intro onComplete={() => setShowIntro(false)} />}
+      </AnimatePresence>
+
+      {!showIntro && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5, ease: "easeIn" }}
+          className="App"
+        >
+          <Navbar />
+          <Hero />
+          <About />
+          <Skills />
+          <Experience />
+          <Projects />
+          <Resume visitorInfo={visitorInfo} />
+          <Contact />
+        </motion.div>
+      )}
+    </>
   );
 }
 

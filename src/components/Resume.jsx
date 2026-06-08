@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
 import resumePdf from "../resume/gandhodijayanth_resume.pdf";
+import { motion } from "framer-motion";
 
 export default function Resume({ visitorInfo }) {
   const [downloading, setDownloading] = useState(false);
@@ -85,34 +86,65 @@ export default function Resume({ visitorInfo }) {
   return (
     <section id="resume" className="py-20 px-6 w-full flex flex-col items-center bg-gray-900 text-white relative">
       <div className="max-w-6xl w-full">
-        <h2 className="text-4xl md:text-5xl font-extrabold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-300 pb-2">
+        <motion.h2 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl font-extrabold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-300 pb-2"
+        >
           My Resume
-        </h2>
+        </motion.h2>
 
         {/* Key Result Areas Section */}
         <div className="mb-16">
-          <h3 className="text-2xl font-semibold mb-8 text-center text-gray-300 flex items-center justify-center gap-4">
+          <motion.h3 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-2xl font-semibold mb-8 text-center text-gray-300 flex items-center justify-center gap-4"
+          >
             <span className="hidden md:block w-16 h-[2px] bg-blue-500/50"></span>
             Highlights & Key Result Areas
             <span className="hidden md:block w-16 h-[2px] bg-blue-500/50"></span>
-          </h3>
+          </motion.h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.15 } }
+            }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
+          >
             {keyResultAreas.map((area, idx) => (
-              <div
+              <motion.div
                 key={idx}
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+                }}
                 className="bg-gray-800 p-6 rounded-2xl border border-gray-700 hover:border-blue-500 transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] hover:-translate-y-1 group"
               >
                 <div className="mb-4 group-hover:scale-110 transition-transform origin-left">{area.icon}</div>
                 <h4 className="text-xl font-bold mb-2 text-gray-100">{area.title}</h4>
                 <p className="text-gray-400 text-sm leading-relaxed">{area.description}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* Buttons */}
-        <div className="flex flex-wrap justify-center items-center gap-6 mt-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="flex flex-wrap justify-center items-center gap-6 mt-16"
+        >
           <button
             onClick={() => setShowModal(true)}
             className="w-52 px-6 py-3 bg-transparent border border-blue-500 hover:bg-blue-500/10 text-blue-400 hover:text-blue-300 font-semibold rounded-full transition-all flex justify-center items-center gap-3 text-sm"
@@ -134,7 +166,7 @@ export default function Resume({ visitorInfo }) {
             </svg>
             <span>{downloading ? "Processing" : "Download Resume"}</span>
           </button>
-        </div>
+        </motion.div>
       </div>
 
       {/* PDF Modal */}

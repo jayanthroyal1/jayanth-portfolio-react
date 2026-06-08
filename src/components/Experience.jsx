@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 export default function Experience() {
   const experiences = [
@@ -73,13 +74,39 @@ export default function Experience() {
   return (
     <section id="experience" className="py-24 px-6 w-full bg-gray-900 text-white relative">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-extrabold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-300 pb-2">
+        <motion.h2 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl font-extrabold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-300 pb-2"
+        >
           Work Experience & Key Projects
-        </h2>
+        </motion.h2>
         
-        <div className="relative border-l-2 border-blue-500/30 ml-4 md:ml-8">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.2
+              }
+            }
+          }}
+          className="relative border-l-2 border-blue-500/30 ml-4 md:ml-8"
+        >
           {experiences.map((exp, idx) => (
-            <div key={idx} className="mb-12 relative pl-8 md:pl-12 group">
+            <motion.div 
+              key={idx} 
+              variants={{
+                hidden: { opacity: 0, x: -50 },
+                visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+              }}
+              className="mb-12 relative pl-8 md:pl-12 group"
+            >
               {/* Timeline Dot */}
               <div className="absolute -left-[9px] top-4 h-4 w-4 rounded-full bg-blue-500 border-4 border-gray-900 group-hover:bg-teal-400 group-hover:shadow-[0_0_10px_rgba(45,212,191,0.8)] transition-all duration-300"></div>
               
@@ -111,9 +138,9 @@ export default function Experience() {
                   ))}
                 </ul>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

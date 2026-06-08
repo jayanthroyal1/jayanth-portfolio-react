@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
+import { motion } from "framer-motion";
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -52,9 +53,21 @@ export default function Contact() {
       id="contact"
       className="min-h-screen md:h-screen py-24 md:py-0 flex flex-col justify-center items-center bg-gray-800 text-white px-6 w-full"
     >
-      <h2 className="text-4xl md:text-5xl font-extrabold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-300 pb-2">Contact Me</h2>
+      <motion.h2 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="text-4xl md:text-5xl font-extrabold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-300 pb-2"
+      >
+        Contact Me
+      </motion.h2>
 
-      <form
+      <motion.form
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.2 }}
         onSubmit={handleSubmit}
         className="flex flex-col w-full max-w-lg space-y-6 bg-gray-900 p-8 md:p-10 rounded-2xl shadow-2xl border border-gray-700"
       >
@@ -93,16 +106,18 @@ export default function Contact() {
         >
           Send Message
         </button>
-      </form>
+      </motion.form>
 
       {status.show && (
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
           className={`mt-6 p-4 rounded-xl w-full max-w-lg text-center font-semibold transition-opacity animate-fadeIn ${
             status.success ? "bg-green-500/20 text-green-400 border border-green-500/50" : "bg-red-500/20 text-red-400 border border-red-500/50"
           }`}
         >
           {status.message}
-        </div>
+        </motion.div>
       )}
     </section>
   );

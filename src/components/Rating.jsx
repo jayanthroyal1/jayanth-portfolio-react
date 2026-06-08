@@ -3,10 +3,12 @@ import { createClient } from "@supabase/supabase-js";
 import celebrateIcon from "../assets/congratulations.gif";
 import thumbsUpIcon from "../assets/thumbs-up.gif";
 
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+const supabase = supabaseUrl && supabaseAnonKey
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : null;
 
 export default function Rating() {
   const [form, setForm] = useState({
@@ -22,6 +24,10 @@ export default function Rating() {
 
   // Fetch ratings
   const fetchRatings = async () => {
+    if (!supabase) {
+      console.warn("Supabase credentials missing. Ratings will not be loaded.");
+      return;
+    }
     const { data, error } = await supabase
       .from("ratings")
       .select("*")
@@ -36,6 +42,10 @@ export default function Rating() {
   // Submit rating
   const submitRating = async (e) => {
     e.preventDefault();
+    if (!supabase) {
+      setStatus("Supabase credentials missing. Cannot submit rating.");
+      return;
+    }
     const { error } = await supabase.from("ratings").insert([
       {
         name: form.name,

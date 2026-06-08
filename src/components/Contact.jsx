@@ -50,13 +50,13 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="min-h-screen md:h-screen pt-24 md:pt-0 flex flex-col justify-center items-center bg-gray-900 text-white p-6"
+      className="min-h-screen md:h-screen py-24 md:py-0 flex flex-col justify-center items-center bg-gray-800 text-white px-6 w-full"
     >
-      <h2 className="text-4xl font-bold mb-8">Contact Me</h2>
+      <h2 className="text-4xl md:text-5xl font-extrabold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-300 pb-2">Contact Me</h2>
 
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col w-full max-w-md space-y-4"
+        className="flex flex-col w-full max-w-lg space-y-6 bg-gray-900 p-8 md:p-10 rounded-2xl shadow-2xl border border-gray-700"
       >
         <input
           type="text"
@@ -65,7 +65,7 @@ export default function Contact() {
           value={form.from_name}
           onChange={handleChange}
           required
-          className="p-3 rounded-md bg-gray-800 text-white"
+          className="p-4 rounded-xl bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
         />
 
         <input
@@ -75,7 +75,7 @@ export default function Contact() {
           value={form.from_email}
           onChange={handleChange}
           required
-          className="p-3 rounded-md bg-gray-800 text-white"
+          className="p-4 rounded-xl bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
         />
 
         <textarea
@@ -84,25 +84,25 @@ export default function Contact() {
           value={form.message}
           onChange={handleChange}
           required
-          className="p-3 rounded-md bg-gray-800 text-white h-32 resize-none"
+          className="p-4 rounded-xl bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors h-40 resize-none"
         />
 
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-md"
+          className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-[0_0_15px_rgba(37,99,235,0.4)] hover:shadow-[0_0_25px_rgba(37,99,235,0.6)] hover:-translate-y-1"
         >
-          Send
+          Send Message
         </button>
       </form>
 
       {status.show && (
-        <p
-          className={`mt-4 p-3 rounded-md ${
-            status.success ? "bg-green-500" : "bg-red-500"
+        <div
+          className={`mt-6 p-4 rounded-xl w-full max-w-lg text-center font-semibold transition-opacity animate-fadeIn ${
+            status.success ? "bg-green-500/20 text-green-400 border border-green-500/50" : "bg-red-500/20 text-red-400 border border-red-500/50"
           }`}
         >
           {status.message}
-        </p>
+        </div>
       )}
     </section>
   );

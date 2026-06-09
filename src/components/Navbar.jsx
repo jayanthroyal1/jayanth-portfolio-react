@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import profile from "../assets/GandhodiJayanth.jpg";
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("hero");
@@ -39,17 +38,12 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 w-full bg-gray-900 bg-opacity-80 backdrop-blur-sm z-50">
       <div className="max-w-6xl mx-auto flex justify-between items-center py-3 px-6">
-        <div className="flex items-center space-x-3">
-          <a href="#hero" className="group">
-            <img
-              src={profile}
-              alt="Profile"
-              className="w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-blue-500 object-cover transition-transform transition-shadow duration-300 hover:scale-110 hover:shadow-lg animate-float"
-            />
+        <div className="flex items-center">
+          <a href="#hero" className="group flex items-center">
+            <span className="font-mono text-2xl md:text-3xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-teal-400 group-hover:from-teal-400 group-hover:to-blue-400 transition-all duration-500 hover:scale-105">
+              {'<'}Jayanth {'/>'}
+            </span>
           </a>
-          <span className="text-white font-bold text-xl hover:text-blue-400 transition-colors duration-300">
-            Jayanth
-          </span>
         </div>
 
         {/* Desktop Links */}
@@ -58,11 +52,10 @@ export default function Navbar() {
             <li key={link.name}>
               <a
                 href={link.href}
-                className={`transition-colors duration-300 ${
-                  activeSection === link.href.slice(1)
+                className={`transition-colors duration-300 ${activeSection === link.href.slice(1)
                     ? "text-blue-400 font-semibold"
                     : "text-white"
-                } hover:text-blue-400`}
+                  } hover:text-blue-400`}
               >
                 {link.name}
               </a>
